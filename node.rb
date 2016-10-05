@@ -10,7 +10,7 @@ class Node
   end
 end
 
-def find_value(head, value)
+def find_index(head, value)
   # return index or nil if not found
   index = 0
   current = head  
@@ -42,6 +42,19 @@ def insert_at(head, new_node, index)
   end
 end
 
+def delete(head, index)
+
+# loop through the list
+# find the index of the node to remove
+# remove node
+# connect previous node to next node after removed node 
+
+end 
+
+def reverse(head)
+
+end 
+
 def print_list(head)
   while head != nil 
     if head.next == nil 
@@ -70,6 +83,7 @@ third = Node.new(3)
 fourth = Node.new(4)
 fifth = Node.new(5)
 seventh = Node.new(7)
+sixth = Node.new(6)
 
 first.next = second
 second.next = third
@@ -80,10 +94,15 @@ fifth.next = nil
 # print_item_at(first, 0)
 # print_item_at(first, 2)
 # print_item_at(second, 2) 
-# puts find_value(first, 0) # nil
-# puts find_value(first, 1) # 0 
-# puts find_value(first, 2) # 1
-# puts find_value(first, 3) # 2
+# puts find_index(first, 0) # nil
+# puts find_index(first, 1) # 0 
+# puts find_index(first, 2) # 1
+# puts find_index(first, 3) # 2
 
 insert_at(first, seventh, 2)
+insert_at(first, sixth, 5)
 print_list(first)
+
+# need to handle edge cases
+# empty list returns new_node as head
+# inserting at the beginning of the list 
