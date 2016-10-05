@@ -43,12 +43,18 @@ def insert_at(head, new_node, index)
 end
 
 def delete(head, index)
-
-# loop through the list
-# find the index of the node to remove
-# remove node
-# connect previous node to next node after removed node 
-
+  counter = 0
+  current = head 
+  previous = current
+  while current != nil
+    if counter == index
+      previous.next = current.next 
+      counter += 1
+    end
+    previous = current
+    current = current.next
+    counter += 1 
+  end
 end 
 
 def reverse(head)
@@ -101,6 +107,7 @@ fifth.next = nil
 
 insert_at(first, seventh, 2)
 insert_at(first, sixth, 5)
+delete(first, 1)
 print_list(first)
 
 # need to handle edge cases
