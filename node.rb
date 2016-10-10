@@ -28,23 +28,33 @@ def insert_at(head, new_node, index)
   # insert new_node into list at specified index
   counter = 0
   current = head
-  previous = current
+  previous = nil
 
   # if list is initially empty
-  if current === nil
+  if current == nil
+    puts "test"
     current = new_node
     current.next = nil
     return 
   end
 
   #if the list has only one node
-  if current.next == nil
+  if current != nil && current.next == nil
+    puts "test 2"
     current.next = new_node
     return
   end
 
+  # if index = 0, prepend
+  if index == 0 && current != nil 
+    puts "test 3"
+    new_node.next = current
+    current = new_node
+    return current
+  end 
+
   while current != nil
-    if counter == index
+    if counter == index 
       new_node.next = current 
       previous.next = new_node
       current = new_node.next
@@ -54,6 +64,12 @@ def insert_at(head, new_node, index)
     current = current.next
     counter += 1 
   end
+
+  # add to the tail, regardless of length of linked list 
+  if index >= counter && current == nil 
+    current = new_node
+    current.next = nil 
+  end 
 end
 
 def delete(head, index)
@@ -87,14 +103,26 @@ def print_list(head)
 end
 
 def print_item_at(head, index)
-  counter = 0 
-  while head != nil 
-    if counter == index
-      return puts head
-    end 
-    head = head.next
-    counter += 1
+  # Traverse through the list till you hit the "nil" at the end
+  current = head
+  full_list = []
+  while current.next != nil
+      full_list += [current.value.to_s]
+      current = current.next_node
   end
+  full_list += [current.value.to_s]
+  puts full_list.join("->")
+end
+
+
+def size(head)
+  current = head
+  size = 0
+  while !(current == nil)
+      size += 1
+      current = current.next
+  end
+  size += 1
 end
 
 first   = Node.new(1)
@@ -105,11 +133,12 @@ fifth   = Node.new(5)
 seventh = Node.new(7)
 sixth   = Node.new(6)
 
-# first.next  = second
-# second.next = third
-# third.next  = fourth
-# fourth.next = fifth
-# fifth.next  = nil
+first.next  = second
+second.next = third
+third.next  = fourth
+fourth.next = fifth
+fifth.next  = sixth
+sixth.next = nil 
 
 # print_item_at(first, 0)
 # print_item_at(first, 2)
@@ -119,20 +148,10 @@ sixth   = Node.new(6)
 # puts find_index(first, 2) # 1
 # puts find_index(first, 3) # 2
 
-# insert_at(first, seventh, 2)
-# insert_at(first, sixth, 5)
-# delete(first, 1)
+# puts insert_at(first, seventh, 0)
+# insert_at(first, seventh, 1)
+# insert_at(first, sixth, 1)
+# delete(first, 0)
 # print_list(first)
-
-test = Node.new(nil)
-insert_at(first, second, 1)
-print_list(first)
-
-# test = Node.new("test")
-# insert_at(test, second, 3)
-# print_list(test)
-
-# need to handle edge cases
-# empty list returns new_node as head
-# inserting at the beginning of the list 
-# inserting at the end of the list 
+# puts
+# puts size(first)
